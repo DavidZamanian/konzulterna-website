@@ -92,11 +92,11 @@ const PrivacyPolicy = () => {
               <p>
                 <strong>iGrit AB</strong>
                 <br />
-                Organisationsnummer: [Organisationsnummer]
+                Organisationsnummer: 559212-0488
                 <br />
-                E-post: kontakt@igrit.se
+                E-post: igritoeer@gmail.com
                 <br />
-                Telefon: [Telefonnummer]
+                Telefon: 076-205 05 40
               </p>
             </div>
           </section>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { getProtectedEmail, sendEmailViaMailto } from '../utils/emailUtils'
 import konzulternaLogo from '../assets/konzulterna-logo.png'
 import './HomePage.css'
 
@@ -44,19 +45,32 @@ const HomePage = () => {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate form submission
-    setTimeout(() => {
-      setSubmitMessage('Tack för ditt meddelande! Vi återkommer till dig inom kort.')
+    try {
+      // Send email using the utility function
+      const emailSent = await sendEmailViaMailto(formData)
+
+      if (emailSent) {
+        setTimeout(() => {
+          setSubmitMessage('E-postklienten öppnades! Om inget hände, vänligen kontakta oss direkt.')
+          setIsSubmitting(false)
+          setFormData({
+            organizationName: '',
+            firstName: '',
+            lastName: '',
+            email: '',
+            phone: '+46',
+            message: '',
+          })
+        }, 1000)
+      } else {
+        setSubmitMessage('Ett fel uppstod. Vänligen försök igen eller kontakta oss direkt.')
+        setIsSubmitting(false)
+      }
+    } catch (error) {
+      console.error('Error:', error)
+      setSubmitMessage('Ett fel uppstod. Vänligen försök igen eller kontakta oss direkt.')
       setIsSubmitting(false)
-      setFormData({
-        organizationName: '',
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '+46',
-        message: '',
-      })
-    }, 1000)
+    }
   }
 
   const services = [
@@ -327,6 +341,21 @@ const HomePage = () => {
                 nivå av dataskydd. Läs mer om hur vi behandlar dina uppgifter i vår fullständiga
                 integritetspolicy.
               </p>
+            </div>
+
+            <div className="contact-info">
+              <h3>Direktkontakt</h3>
+              <p>
+                Du kan även kontakta oss direkt via e-post:{' '}
+                <button
+                  onClick={() => (window.location.href = `mailto:${getProtectedEmail()}`)}
+                  className="email-link"
+                  type="button"
+                >
+                  {getProtectedEmail()}
+                </button>
+              </p>
+              <p>Vi svarar normalt inom 24 timmar på alla förfrågningar.</p>
             </div>
           </div>
         </div>

@@ -6,10 +6,22 @@ En modern webbplats för Företag Konzulterna iGrit AB, byggd med React, TypeScr
 
 - **Modern design**: Responsiv design med moderna CSS-tekniker
 - **Tjänstepresentation**: Tydlig presentation av företagets tjänster
-- **Kontaktformulär**: Funktionellt kontaktformulär för kundförfrågningar
+- **Kontaktformulär**: Funktionellt kontaktformulär med e-postfunktionalitet
+- **E-postskydd**: E-postadresser skyddade mot skrapning
 - **Integritetspolicy**: Separat sida för GDPR-compliance
 - **SEO-optimerad**: Inkluderar sitemap och meta-tags
 - **Mobilanpassad**: Fullt responsiv design för alla enheter
+
+## 📧 E-postfunktionalitet
+
+Kontaktformuläret skickar e-post till `igritoeer@gmail.com` med följande funktioner:
+
+- **Skydd mot skrapning**: E-postadressen är obfuskerad i koden
+- **Mailto-integration**: Öppnar användarens e-postklient med förifylld information
+- **EmailJS-support**: Möjlighet att konfigurera direkt e-postsändning (se `EMAIL_SETUP.md`)
+- **Fallback-system**: Automatisk fallback till mailto om EmailJS inte är konfigurerat
+
+För avancerad e-postfunktionalitet, se dokumentationen i `EMAIL_SETUP.md`.
 
 ## 🛠️ Teknisk stack
 
