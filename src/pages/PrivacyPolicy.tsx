@@ -1,7 +1,12 @@
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './PrivacyPolicy.css'
 
 const PrivacyPolicy = () => {
+  useEffect(() => {
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <div className="privacy-policy-page">
       <div className="container">

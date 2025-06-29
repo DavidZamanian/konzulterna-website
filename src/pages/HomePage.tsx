@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import konzulternaLogo from '../assets/konzulterna-logo.png'
 import './HomePage.css'
@@ -24,6 +24,13 @@ const HomePage = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState('')
+
+  useEffect(() => {
+    // Scroll to top when component mounts (only when navigating to homepage from another page)
+    if (window.location.hash === '') {
+      window.scrollTo(0, 0)
+    }
+  }, [])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -80,6 +87,10 @@ const HomePage = () => {
       description:
         'Uthyrning av personal inom bokföring och administration för dina tillfälliga behov',
     },
+    {
+      title: 'Webbutveckling',
+      description: 'Utveckling av enkla och professionella statiska webbplatser för ditt företag',
+    },
   ]
 
   return (
@@ -95,6 +106,7 @@ const HomePage = () => {
               <a href="#services">Företagsrådgivning</a>
               <a href="#services">Skatteadministration</a>
               <a href="#services">Personaluthyrning</a>
+              <a href="#services">Webbutveckling</a>
             </div>
           </div>
         </div>
@@ -157,6 +169,30 @@ const HomePage = () => {
                     <p>
                       Vi hjälper dig att välja den bästa företagsformen för din verksamhet. 1 timma
                       gratis rådgivning.
+                    </p>
+                  </div>
+                )}
+                {service.title === 'Webbutveckling' && (
+                  <div className="service-details">
+                    <p>
+                      <strong>
+                        Vi skapar enkla, professionella webbplatser anpassade för mindre företag.
+                      </strong>
+                    </p>
+                    <p>
+                      <strong>Exempel på webbplatser vi utvecklar:</strong>
+                    </p>
+                    <ul>
+                      <li>Företagspresentationer och portfolios</li>
+                      <li>Kontaktsidor med formulär</li>
+                      <li>Produktkataloger och prisinformation</li>
+                      <li>Enklare landningssidor för marknadsföring</li>
+                      <li>Informationssidor för tjänster</li>
+                    </ul>
+                    <p>
+                      Alla webbplatser är responsiva, SEO-optimerade och enkla att uppdatera.
+                      Perfekt för företag som behöver en professionell närvaro online utan
+                      komplicerade funktioner.
                     </p>
                   </div>
                 )}

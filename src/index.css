@@ -31,6 +31,10 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: inherit;
   background-color: var(--color-background);
